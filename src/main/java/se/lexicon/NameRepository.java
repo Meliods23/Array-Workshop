@@ -16,7 +16,7 @@ public class NameRepository {
      */
     public static int getSize() {
         //todo: PART 1: implement getSize method
-        return 0;
+        return names.length;
     }
 
 
@@ -27,6 +27,7 @@ public class NameRepository {
      */
     public static void setNames(final String[] names) {
         //todo: PART 1: implement setNames method
+        NameRepository.names = names;
     }
 
 
@@ -35,6 +36,7 @@ public class NameRepository {
      */
     public static void clear() {
         //todo: PART 1: implement clear method
+        NameRepository.names = null;
     }
 
 
@@ -45,7 +47,7 @@ public class NameRepository {
      */
     public static String[] findAll() {
         //todo: PART 1: implement findAll method
-        return null;
+        return names.clone();
     }
 
 
