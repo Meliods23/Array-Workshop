@@ -15,7 +15,6 @@ public class NameRepository {
      * @return The number of elements in the names array.
      */
     public static int getSize() {
-        //todo: PART 1: implement getSize method
         return names.length;
     }
 
@@ -26,7 +25,6 @@ public class NameRepository {
      * @param names The array of names to set.
      */
     public static void setNames(final String[] names) {
-        //todo: PART 1: implement setNames method
         NameRepository.names = names;
     }
 
@@ -35,7 +33,6 @@ public class NameRepository {
      * Clears the names array by creating a new empty array.
      */
     public static void clear() {
-        //todo: PART 1: implement clear method
         NameRepository.names = null;
     }
 
@@ -46,7 +43,6 @@ public class NameRepository {
      * @return A new array containing all elements from the names array.
      */
     public static String[] findAll() {
-        //todo: PART 1: implement findAll method
         return names.clone();
     }
 
@@ -58,7 +54,13 @@ public class NameRepository {
      * @return The matching name if found; otherwise, null.
      */
     public static String find(final String fullName) {
-        //todo: PART 2: implement find method
+        for (int i = 0; i < names.length; i++)
+        {
+            if(names[i].equalsIgnoreCase(fullName))
+            {
+                return names[i];
+            }
+        }
         return null;
     }
 
@@ -70,7 +72,17 @@ public class NameRepository {
      * @return True if the fullName is added successfully; false if it already exists.
      */
     public static boolean add(final String fullName) {
-        //todo: PART 2: implement add method
+        if(find(fullName) == null)
+        {
+            String[] temp = names;
+            names = new String[names.length + 1];
+            for(int i = 0; i < names.length - 1; i++)
+            {
+                names[i] = temp[i];
+            }
+            names[names.length - 1] = fullName;
+            return true;
+        }
         return false;
     }
 
