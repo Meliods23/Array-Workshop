@@ -1,5 +1,7 @@
 package se.lexicon;
 
+import java.util.Arrays;
+
 /**
  * The NameRepository class provides methods to manage a list of names.
  * It offers functionalities such as adding, removing, finding, and updating names.
@@ -94,8 +96,19 @@ public class NameRepository {
      * @return An array containing all matching names.
      */
     public static String[] findByFirstName(final String firstName) {
-        //todo: PART 3: findByFirstName method
-        return null;
+        String[] namesFound = new String[0];
+
+        for (String name : names)
+        {
+            String[] temp00 = name.split(" ");
+
+            if(temp00[0].equalsIgnoreCase(firstName))
+            {
+                namesFound = expandStringArray(name, namesFound);
+            }
+        }
+
+        return namesFound;
     }
 
 
@@ -106,8 +119,19 @@ public class NameRepository {
      * @return An array containing all matching names.
      */
     public static String[] findByLastName(final String lastName) {
-        //todo: PART 3: implement findByLastName method
-        return null;
+        String[] namesFound = new String[0];
+
+        for (String name : names)
+        {
+            String[] temp00 = name.split(" ");
+
+            if(temp00[1].equalsIgnoreCase(lastName))
+            {
+                namesFound = expandStringArray(name, namesFound);
+            }
+        }
+
+        return namesFound;
     }
 
 
@@ -119,7 +143,22 @@ public class NameRepository {
      * @return True if the name is updated successfully; false if the updated name already exists or the original name is not found.
      */
     public static boolean update(final String original, final String updatedName) {
-        //todo: PART 3: implement update method
+
+        for (int i = 0; i < names.length; i++)
+        {
+            // Updates name if found and returns true
+            if(names[i].equalsIgnoreCase(original))
+            {
+                names[i] = updatedName;
+                return true;
+            }
+            // Returns false if new name is found
+            else if (names[i].equalsIgnoreCase(updatedName)) {
+                return false;
+            }
+        }
+
+        // Returns false if original name not found
         return false;
     }
 
@@ -136,4 +175,19 @@ public class NameRepository {
     }
 
 
+
+
+    private static String[] expandStringArray(String string, String[] array)
+    {
+        String[] expanded = new String[array.length + 1];
+
+        for (int i = 0; i < array.length; i++)
+        {
+            expanded[i] = array[i];
+        }
+
+        expanded[expanded.length - 1] = string;
+
+        return expanded;
+    }
 }
