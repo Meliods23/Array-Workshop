@@ -35,7 +35,7 @@ public class NameRepository {
      * Clears the names array by creating a new empty array.
      */
     public static void clear() {
-        NameRepository.names = null;
+        NameRepository.names = new String[0];
     }
 
 
@@ -170,7 +170,16 @@ public class NameRepository {
      * @return True if the name is removed successfully; false if the name is not found in the array.
      */
     public static boolean remove(final String fullName) {
-        //todo: PART 4: implement remove method
+
+        int temp = names.length;
+
+        names = reduceStringArray(fullName, names);
+
+        if(names.length < temp)
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -189,5 +198,24 @@ public class NameRepository {
         expanded[expanded.length - 1] = string;
 
         return expanded;
+    }
+
+    private static String[] reduceStringArray(String string, String[] array)
+    {
+        String[] reduced = new String[0];
+
+        for (int i = 0; i < array.length; i++)
+        {
+            if(array[i].equalsIgnoreCase(string))
+            {
+
+            }
+            else
+            {
+                reduced = expandStringArray(array[i], reduced);
+            }
+        }
+
+        return reduced;
     }
 }
